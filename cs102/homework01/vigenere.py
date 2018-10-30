@@ -1,6 +1,3 @@
-albets_string="abcdefghijklmnopqrstuvwxyz"
-albets=list(albets_string)
-albets2=list(albets_string.upper())
 
 def encrypt_vigenere(plaintext, keyword):
     """
@@ -13,6 +10,9 @@ def encrypt_vigenere(plaintext, keyword):
     >>> encrypt_vigenere("ATTACKATDAWN", "LEMON")
     'LXFOPVEFRNHR'
     """
+    albets_string="abcdefghijklmnopqrstuvwxyz"
+    albets=list(albets_string)
+    albets2=list(albets_string.upper())
     ciphertext = ""
     keyword=keyword.lower()
     n=0
@@ -37,6 +37,7 @@ def encrypt_vigenere(plaintext, keyword):
     return ciphertext
         
 def decrypt_vigenere(ciphertext, keyword):
+
     """
     Decrypts a ciphertext using a Vigenere cipher.
 
@@ -47,6 +48,9 @@ def decrypt_vigenere(ciphertext, keyword):
     >>> decrypt_vigenere("LXFOPVEFRNHR", "LEMON")
     'ATTACKATDAWN'
     """
+    albets_string="abcdefghijklmnopqrstuvwxyz"
+    albets=list(albets_string)
+    albets2=list(albets_string.upper())
     plaintext=""
     n=0
     keyword=keyword.lower()
@@ -70,4 +74,4 @@ def decrypt_vigenere(ciphertext, keyword):
 
     return plaintext
 
-print(encrypt_vigenere("ATTACKATDAWN", "LEMON"))
+

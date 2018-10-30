@@ -1,15 +1,6 @@
-from collections import deque
-albets=deque(list("abcdefghijklmnopqrstuvwxyz"))
-albets2=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-albets3=deque(list("abcdefghijklmnopqrstuvwxyz"))
-albets4=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-key=int(input("Enter the key (for doctesting enter 3): "))
-for a in range(key):
-    t=albets.popleft()
-    t2=albets2.popleft()
-    albets.append(t)
-    albets2.append(t2)
-def encrypt_caesar(temp):
+
+
+def encrypt_caesar(temp,key=3):
     """
     Encrypts plaintext using a Caesar cipher.
 
@@ -22,20 +13,30 @@ def encrypt_caesar(temp):
     >>> encrypt_caesar("")
     ''
     """
-    
+    from collections import deque
+    albets=deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets2=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+    albets3=deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets4=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+
+    for a in range(key):
+        t=albets.popleft()
+        t2=albets2.popleft()
+        albets.append(t)
+        albets2.append(t2)
     str1 = temp
 
     out_string=""
     for a in str1:
-        if(122>=ord(a)>=97):
+        if('z'>=a>='a'):
             out_string+=(albets[ord(a)-97])
-        elif(65<=ord(a)<=90):
+        elif('A'<=a<='Z'):
             out_string+=(albets2[ord(a)-65])
         else:
             out_string+=a
     return out_string
 
-def decrypt_caesar(temp):
+def decrypt_caesar(temp,key=3):
     """
     Decrypts a ciphertext using a Caesar cipher.
 
@@ -48,7 +49,18 @@ def decrypt_caesar(temp):
     >>> decrypt_caesar("")
     ''
     """
-    
+    from collections import deque
+    albets=deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets2=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+    albets3=deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets4=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+
+    for a in range(key):
+        t=albets.popleft()
+        t2=albets2.popleft()
+        albets.append(t)
+        albets2.append(t2)
+
     str1=temp
     out_string=""
     for a in str1:
