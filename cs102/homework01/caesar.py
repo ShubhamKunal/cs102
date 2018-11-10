@@ -1,9 +1,9 @@
+''' This is Caesar's Cipher'''
 
 
-def encrypt_caesar(temp,key=3):
+def encrypt_caesar(temp, key=3):
     """
-    Encrypts plaintext using a Caesar cipher.
-
+    Encrypts plaintext using a_1 Caesar cipher.
     >>> encrypt_caesar("PYTHON")
     'SBWKRQ'
     >>> encrypt_caesar("python")
@@ -14,32 +14,28 @@ def encrypt_caesar(temp,key=3):
     ''
     """
     from collections import deque
-    albets=deque(list("abcdefghijklmnopqrstuvwxyz"))
-    albets2=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-    albets3=deque(list("abcdefghijklmnopqrstuvwxyz"))
-    albets4=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-
-    for a in range(key):
-        t=albets.popleft()
-        t2=albets2.popleft()
-        albets.append(t)
-        albets2.append(t2)
+    albets = deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets2 = deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+    for a_1 in range(key):
+        t_1 = albets.popleft()
+        t_2 = albets2.popleft()
+        albets.append(t_1)
+        albets2.append(t_2)
     str1 = temp
-
-    out_string=""
-    for a in str1:
-        if('z'>=a>='a'):
-            out_string+=(albets[ord(a)-97])
-        elif('A'<=a<='Z'):
-            out_string+=(albets2[ord(a)-65])
+    out_string = ""
+    for a_1 in str1:
+        if 'z' >= a_1 >= 'a':
+            out_string += (albets[ord(a_1)-97])
+        elif 'A' <= a_1 <= 'Z':
+            out_string += (albets2[ord(a_1)-65])
         else:
-            out_string+=a
+            out_string += a_1
     return out_string
 
-def decrypt_caesar(temp,key=3):
-    """
-    Decrypts a ciphertext using a Caesar cipher.
 
+def decrypt_caesar(temp, key=3):
+    """
+    Decrypts a_1 ciphertext using a Caesar cipher.
     >>> decrypt_caesar("SBWKRQ")
     'PYTHON'
     >>> decrypt_caesar("sbwkrq")
@@ -50,27 +46,22 @@ def decrypt_caesar(temp,key=3):
     ''
     """
     from collections import deque
-    albets=deque(list("abcdefghijklmnopqrstuvwxyz"))
-    albets2=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-    albets3=deque(list("abcdefghijklmnopqrstuvwxyz"))
-    albets4=deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-
-    for a in range(key):
-        t=albets.popleft()
-        t2=albets2.popleft()
-        albets.append(t)
-        albets2.append(t2)
-
-    str1=temp
-    out_string=""
-    for a in str1:
-        if(122>=ord(a)>=97):
-            out_string+=albets3[albets.index(a)]
-        elif(65<=ord(a)<=90):
-            out_string+=albets4[albets2.index(a)]
+    albets = deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets2 = deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+    albets3 = deque(list("abcdefghijklmnopqrstuvwxyz"))
+    albets4 = deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
+    for a_1 in range(key):
+        t_1 = albets.popleft()
+        t_2 = albets2.popleft()
+        albets.append(t_1)
+        albets2.append(t_2)
+    str1 = temp
+    out_string = ""
+    for a_1 in str1:
+        if 'z' >= a_1 >= 'a':
+            out_string += albets3[list(albets).index(a_1)]
+        elif 'A' <= a_1 <= 'Z':
+            out_string += albets4[list(albets2).index(a_1)]
         else:
-            out_string+=a
-
+            out_string += a_1
     return out_string
-
-
