@@ -3,14 +3,16 @@ import random
 
 
 def read_sudoku(puzzle):
-    """ to read file sudoku.txt """
+    """ Прочитать Судоку из указанного файла """
     digits = [reader_var for reader_var in open(puzzle).read() if reader_var in '123456789.']
     grid = group(digits, 9)
     return grid
 
 
-def group(values, n_1=9):
+def group(values, N=9):
     """
+    Сгруппировать значения values в список, состоящий из списков по n элементов
+
     >>> group([1,2,3,4], 2)
     [[1, 2], [3, 4]]
     >>> group([1,2,3,4,5,6,7,8,9], 3)
@@ -18,28 +20,29 @@ def group(values, n_1=9):
     """
     temp_arr1 = []
     temp_arr2 = []
-    for a_1 in range(len(values)):
-        temp_arr1.append(values[a_1])
-        if (a_1 + 1) % n_1 == 0:
+    for counter in range(len(values)):
+        temp_arr1.append(values[counter])
+        if (counter + 1) % N == 0:
             temp_arr2.append(temp_arr1)
             temp_arr1 = []
     return temp_arr2
 
 
 def display(grid):
-    ''' This function displays 2D array in grid like format'''
-    for i_1 in range(len(grid)):
-        for a_1 in range(len(grid[i_1])):
-            print(grid[i_1][a_1]),
-            if (a_1 + 1) % 3 == 0:
+    """Вывод Судоку """
+    for counter_1 in range(len(grid)):
+        for counter_2 in range(len(grid[counter_1])):
+            print(grid[counter_1][counter_2]),
+            if (counter_2 + 1) % 3 == 0:
                 print('|'),
         print ' '
-        if (i_1 + 1) % 3 == 0 and i_1 != 8:
+        if (counter_1 + 1) % 3 == 0 and counter_1 != 8:
             print "------+-------+--------"
 
 
 def get_row(values, pos):
-    """
+    """ Возвращает все значения для номера строки, указанной в pos
+
     >>> get_row([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']], (0, 0))
     ['1', '2', '.']
     >>> get_row([['1', '2', '3'], ['4', '.', '6'], ['7', '8', '9']], (1, 0))
@@ -51,7 +54,8 @@ def get_row(values, pos):
 
 
 def get_col(values, pos):
-    """
+    """ Возвращает все значения для номера столбца, указанного в pos
+
     >>> get_col([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']], (0, 0))
     ['1', '4', '7']
     >>> get_col([['1', '2', '3'], ['4', '.', '6'], ['7', '8', '9']], (0, 1))
@@ -59,15 +63,16 @@ def get_col(values, pos):
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    temp_1 = []
-    for a_1 in range(len(values)):
-        temp_1 += values[a_1][pos[1]]
+    temp_list = []
+    for counter in range(len(values)):
+        temp_list += values[counter][pos[1]]
 
-    return temp_1
+    return temp_list
 
 
 def get_block(values, pos):
-    """
+    """ Возвращает все значения из квадрата, в который попадает позиция pos
+
     >>> grid = read_sudoku('puzzle1.txt')
     >>> get_block(grid, (0, 1))
     ['5', '3', '.', '6', '.', '.', '.', '9', '8']
@@ -78,46 +83,46 @@ def get_block(values, pos):
     """
     block = []
     if(pos[0] < 3 and pos[1] < 3):
-        for i_1 in range(3):
-            for i_2 in range(3):
-                block += values[i_1][i_2]
+        for counter_row in range(3):
+            for counter_col in range(3):
+                block += values[counter_row][counter_col]
     elif(pos[0] < 3 and 6 > pos[1] >= 3):
-        for i_1 in range(3):
-            for i_2 in range(3, 6):
-                block += values[i_1][i_2]
+        for counter_row in range(3):
+            for counter_col in range(3, 6):
+                block += values[counter_row][counter_col]
     elif(pos[0] < 3 and 9 > pos[1] >= 6):
-        for i_1 in range(3):
-            for i_2 in range(6, 9):
-                block += values[i_1][i_2]
+        for counter_row in range(3):
+            for counter_col in range(6, 9):
+                block += values[counter_row][counter_col]
     elif(6 > pos[0] >= 3 and pos[1] < 3):
-        for i_1 in range(3, 6):
-            for i_2 in range(3):
-                block += values[i_1][i_2]
+        for counter_row in range(3, 6):
+            for counter_col in range(3):
+                block += values[counter_row][counter_col]
     elif(6 > pos[0] >= 3 and 6 > pos[1] >= 3):
-        for i_1 in range(3, 6):
-            for i_2 in range(3, 6):
-                block += values[i_1][i_2]
+        for counter_row in range(3, 6):
+            for counter_col in range(3, 6):
+                block += values[counter_row][counter_col]
     elif(6 > pos[0] >= 3 and 9 > pos[1] >= 6):
-        for i_1 in range(3, 6):
-            for i_2 in range(6, 9):
-                block += values[i_1][i_2]
+        for counter_row in range(3, 6):
+            for counter_col in range(6, 9):
+                block += values[counter_row][counter_col]
     elif(9 > pos[0] >= 6 and pos[1] < 3):
-        for i_1 in range(6, 9):
-            for i_2 in range(3):
-                block += values[i_1][i_2]
+        for counter_row in range(6, 9):
+            for counter_col in range(3):
+                block += values[counter_row][counter_col]
     elif(9 > pos[0] >= 6 and 6 > pos[1] >= 3):
-        for i_1 in range(6, 9):
-            for i_2 in range(3, 6):
-                block += values[i_1][i_2]
+        for counter_row in range(6, 9):
+            for counter_col in range(3, 6):
+                block += values[counter_row][counter_col]
     elif(9 > pos[0] >= 6 and 9 > pos[1] >= 6):
-        for i_1 in range(6, 9):
-            for i_2 in range(6, 9):
-                block += values[i_1][i_2]
+        for counter_row in range(6, 9):
+            for counter_col in range(6, 9):
+                block += values[counter_row][counter_col]
     return block
 
 
 def find_empty_positions(grid):
-    """
+    """ Найти первую свободную позицию в пазле
 
     >>> find_empty_positions([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']])
     (0, 2)
@@ -126,20 +131,21 @@ def find_empty_positions(grid):
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    k_1 = 0
-    for i_1 in range(0, len(grid)):
-        for i_2 in range(0, len(grid[0])):
+    counter = 0
+    for counter_row in range(0, len(grid)):
+        for counter_col in range(0, len(grid[0])):
 
-            if grid[i_1][i_2] == '.':
-                return tuple([i_1, i_2])
+            if grid[counter_row][counter_col] == '.':
+                return tuple([counter_row, counter_col])
             else:
-                k_1 += int(grid[i_1][i_2])
-    if k_1 == 405:
+                counter += int(grid[counter_row][counter_col])
+    if counter == 405:
         return (-1, -1)
 
 
 def find_possible_values(grid, pos):
-    """
+    """ Вернуть множество возможных значения для указанной позиции
+
     >>> grid = read_sudoku('puzzle1.txt')
     >>> values = find_possible_values(grid, (0,2))
     >>> set(values) == {'1', '2', '4'}
@@ -148,28 +154,35 @@ def find_possible_values(grid, pos):
     >>> set(values) == {'2', '5', '9'}
     True
     """
-    p_v1 = []
-    p_v = set('123456789') - set(get_block(grid, pos)) - set(get_col(grid, pos)) - set(get_row(grid, pos))
-    for a_1 in p_v:
+    possible_values = []
+    possible_values_temp = set('123456789') - set(get_block(grid, pos)) - set(get_col(grid, pos)) - set(get_row(grid, pos))
+    for space in possible_values_temp:
         row = 0
         block = 0
         col = 0
-        for t_1 in get_row(grid, pos):
-            if t_1 != '.':
-                row += int(t_1)
-        for t_1 in get_col(grid, pos):
-            if t_1 != '.':
-                col += int(t_1)
-        for t_1 in get_block(grid, pos):
-            if t_1 != '.':
-                block += int(t_1)
-        if(row + int(a_1) <= 45 and col + int(a_1) <= 45 and block + int(a_1) <= 45):
-            p_v1.append(a_1)
-    return p_v1
+        for num in get_row(grid, pos):
+            if num != '.':
+                row += int(num)
+        for num in get_col(grid, pos):
+            if num != '.':
+                col += int(num)
+        for num in get_block(grid, pos):
+            if num != '.':
+                block += int(num)
+        if(row + int(space) <= 45 and col + int(space) <= 45 and block + int(space) <= 45):
+            possible_values.append(space)
+    return possible_values
 
 
 def solve(grid):
-    """
+    """ Решение пазла, заданного в grid """
+    """ Как решать Судоку?
+        1. Найти свободную позицию
+        2. Найти все возможные значения, которые могут находиться на этой позиции
+        3. Для каждого возможного значения:
+            3.1. Поместить это значение на эту позицию
+            3.2. Продолжить решать оставшуюся часть пазла
+
     >>> grid = read_sudoku('puzzle1.txt')
     >>> solve(grid)
     [['5', '3', '4', '6', '7', '8', '9', '1', '2'], ['6', '7', '2', '1', '9', '5', '3', '4', '8'], ['1', '9', '8', '3', '4', '2', '5', '6', '7'], ['8', '5', '9', '7', '6', '1', '4', '2', '3'], ['4', '2', '6', '8', '5', '3', '7', '9', '1'], ['7', '1', '3', '9', '2', '4', '8', '5', '6'], ['9', '6', '1', '5', '3', '7', '2', '8', '4'], ['2', '8', '7', '4', '1', '9', '6', '3', '5'], ['3', '4', '5', '2', '8', '6', '1', '7', '9']]
@@ -179,9 +192,9 @@ def solve(grid):
     if pos == (-1, -1):
         return grid
 
-    p_v = find_possible_values(grid, pos)
-    for a_1 in p_v:
-        grid[pos[0]][pos[1]] = a_1
+    possible_val = find_possible_values(grid, pos)
+    for space in possible_val:
+        grid[pos[0]][pos[1]] = space
         answer = solve(grid)
         if answer:
             return answer
@@ -190,22 +203,23 @@ def solve(grid):
 
 
 def check_solution(solution):
-    ''' This function checks whether or not the solution is viable '''
+    ''' Если решение solution верно, то вернуть True, в противном случае False '''
     grid = solution
-    l_1 = []
-    for i_1 in range(len(grid)):
-        for i_2 in range(len(grid[0])):
-            l_1 += grid[i_1][i_2]
-        if set(l_1) != set('123456789'):
+    list_1 = []
+    for counter_1 in range(len(grid)):
+        for counter_2 in range(len(grid[0])):
+            list_1 += grid[counter_1][counter_2]
+        if set(list_1) != set('123456789'):
             return False
-        if sum([int(i) for i in l_1]) != 45:
+        if sum([int(i) for i in list_1]) != 45:
             return False
-        l_1 = []
+        list_1 = []
     return True
 
 
 def generate_sudoku(N):
-    """
+    """ Генерация судоку заполненного на N элементов
+
     >>> grid = generate_sudoku(40)
     >>> sum(1 for row in grid for e in row if e == '.')
     41
@@ -228,14 +242,14 @@ def generate_sudoku(N):
     if N > 81:
         dots = 0
     dots = 81 - N
-    k = 0
+    num_dots = 0
     grid = solve([['.']*9 for i in range(9)])
-    while k < dots:
+    while num_dots < dots:
         row = random.randint(0, 8)
         col = random.randint(0, 8)
         if grid[row][col] != '.':
             grid[row][col] = '.'
-            k += 1
+            num_dots += 1
     return grid
 
 

@@ -16,20 +16,20 @@ def encrypt_caesar(temp, key=3):
     from collections import deque
     albets = deque(list("abcdefghijklmnopqrstuvwxyz"))
     albets2 = deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-    for a_1 in range(key):
-        t_1 = albets.popleft()
-        t_2 = albets2.popleft()
-        albets.append(t_1)
-        albets2.append(t_2)
+    for counter in range(key):
+        tempChar_1 = albets.popleft()
+        tempChar_2 = albets2.popleft()
+        albets.append(tempChar_1)
+        albets2.append(tempChar_2)
     str1 = temp
     out_string = ""
-    for a_1 in str1:
-        if 'z' >= a_1 >= 'a':
-            out_string += (albets[ord(a_1)-97])
-        elif 'A' <= a_1 <= 'Z':
-            out_string += (albets2[ord(a_1)-65])
+    for temp_char in str1:
+        if 'z' >= temp_char >= 'a':
+            out_string += (albets[ord(temp_char)-97])
+        elif 'A' <= temp_char <= 'Z':
+            out_string += (albets2[ord(temp_char)-65])
         else:
-            out_string += a_1
+            out_string += temp_char
     return out_string
 
 
@@ -50,18 +50,18 @@ def decrypt_caesar(temp, key=3):
     albets2 = deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
     albets3 = deque(list("abcdefghijklmnopqrstuvwxyz"))
     albets4 = deque(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
-    for a_1 in range(key):
-        t_1 = albets.popleft()
-        t_2 = albets2.popleft()
-        albets.append(t_1)
-        albets2.append(t_2)
+    for counter in range(key):
+        tempChar_1 = albets.popleft()
+        tempChar_2 = albets2.popleft()
+        albets.append(tempChar_1)
+        albets2.append(tempChar_2)
     str1 = temp
     out_string = ""
-    for a_1 in str1:
-        if 'z' >= a_1 >= 'a':
-            out_string += albets3[list(albets).index(a_1)]
-        elif 'A' <= a_1 <= 'Z':
-            out_string += albets4[list(albets2).index(a_1)]
+    for temp_char in str1:
+        if 'z' >= temp_char >= 'a':
+            out_string += albets3[list(albets).index(temp_char)]
+        elif 'A' <= temp_char <= 'Z':
+            out_string += albets4[list(albets2).index(temp_char)]
         else:
-            out_string += a_1
+            out_string += temp_char
     return out_string
