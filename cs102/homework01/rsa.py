@@ -3,7 +3,7 @@ import random
 import math
 
 
-def is_prime(inp_num):
+def is_prime(inp_num: int) -> bool:
     """
     >>> is_prime(2)
     True
@@ -24,7 +24,7 @@ def is_prime(inp_num):
     return True
 
 
-def gcd(input_1, input_2):
+def gcd(input_1: int, input_2: int) -> int:
     """
     >>> gcd(12, 15)
     3
@@ -36,7 +36,7 @@ def gcd(input_1, input_2):
     return gcd(input_2, input_1 % input_2)
 
 
-def egcd(input_1, input_2):
+def egcd(input_1: int, input_2: int) -> int:
     ''' To calculate Extended great common divisor'''
     if input_1 == 0:
         return (input_2, 0, 1)
@@ -44,7 +44,7 @@ def egcd(input_1, input_2):
     return (param1, param3 - (input_2 // input_1) * param2, param2)
 
 
-def multiplicative_inverse(input1, phi):
+def multiplicative_inverse(input1: int, phi: int) -> int:
     """
     >>> multiplicative_inverse(7, 40)
     23
@@ -56,7 +56,7 @@ def multiplicative_inverse(input1, phi):
         return param2 % phi
 
 
-def generate_keypair(p, q):
+def generate_keypair(p: int, q: int) -> tuple:
     ''' To generate keypair '''
     if not (is_prime(p) and is_prime(q)):
         raise ValueError('Both numbers must be prime.')
@@ -80,7 +80,7 @@ def generate_keypair(p, q):
     return ((e, n), (d, n))
 
 
-def encrypt(pk, plaintext):
+def encrypt(pk: int, plaintext: str) -> str:
     ''' Function to encrypt the text'''
     # Unpack the key into it's components
     key, n = pk
@@ -91,7 +91,7 @@ def encrypt(pk, plaintext):
     return cipher
 
 
-def decrypt(pk, ciphertext):
+def decrypt(pk: int, ciphertext: str) -> str:
     '''Function to decrypt the text '''
     # Unpack the key into its components
     key, n = pk
@@ -102,16 +102,16 @@ def decrypt(pk, ciphertext):
 
 
 if __name__ == '__main__':
-    print "RSA Encrypter/ Decrypter"
+    print ("RSA Encrypter/ Decrypter)")
     P = int(input("Enter a prime number (17, 19, 23, etc): "))
     Q = int(input("Enter another prime number: "))
-    print "Generating your public/private keypairs now . . ."
+    print("Generating your public/private keypairs now . . .")
     PUBLIC, PRIVATE = generate_keypair(P, Q)
     print("Your public key is ", PUBLIC, " and your private key is ", PRIVATE)
     MESSAGE = input("Enter a message to encrypt with your private key: ")
     ENCRYPTED_MSG = encrypt(PRIVATE, MESSAGE)
-    print "Your encrypted message is: "
-    print ENCRYPTED_MSG
-    print "Decrypting message with public key ", PUBLIC, " . . ."
-    print "Your message is:"
-    print decrypt(PUBLIC, ENCRYPTED_MSG)
+    print("Your encrypted message is: ")
+    print(ENCRYPTED_MSG)
+    print("Decrypting message with public key ", PUBLIC, " . . .")
+    print("Your message is:")
+    print(decrypt(PUBLIC, ENCRYPTED_MSG))

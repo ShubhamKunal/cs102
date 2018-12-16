@@ -1,7 +1,7 @@
 ''' This is Caesar's Cipher'''
 
 
-def encrypt_caesar(temp, key=3):
+def encrypt_caesar(temp: str, key=3) -> str:
     """
     Encrypts plaintext using a_1 Caesar cipher.
     >>> encrypt_caesar("PYTHON")
@@ -33,7 +33,7 @@ def encrypt_caesar(temp, key=3):
     return out_string
 
 
-def decrypt_caesar(temp, key=3):
+def decrypt_caesar(temp: str, key=3) -> str:
     """
     Decrypts a_1 ciphertext using a Caesar cipher.
     >>> decrypt_caesar("SBWKRQ")

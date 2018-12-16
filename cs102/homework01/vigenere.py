@@ -1,7 +1,7 @@
 ''' Vigenere Cipher '''
 
 
-def encrypt_vigenere(plaintext, keyword):
+def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     """
     Encrypts plaintext using Vigenere cipher.
 
@@ -33,7 +33,7 @@ def encrypt_vigenere(plaintext, keyword):
     return ciphertext
 
 
-def decrypt_vigenere(ciphertext, keyword):
+def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
 
     """
     Decrypts a_1 ciphertext using a Vigenere cipher.
