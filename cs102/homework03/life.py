@@ -116,7 +116,6 @@ class GameOfLife:
         if col != 0:
             neighbours.append(cell_list[row][col - 1])
 
-
         return neighbours
 
     def get_copy(self, clist) -> list:
